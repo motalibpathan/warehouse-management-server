@@ -15,12 +15,30 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
   serverApi: ServerApiVersion.v1,
 });
-client.connect((err) => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  console.log("connected to db successful");
-  client.close();
-});
+
+async function run() {
+  try {
+    await client.connect();
+    const inventoryCollection = client.db("carmax").collection("inventories");
+
+    // inventories api
+    app.get("/inventory", async (req, res) => {
+      const size = parseInt(req.query.size);
+      const query = {};
+      const cursor = inventoryCollection.find(query);
+      let inventories;
+      if (size) {
+        inventories = await cursor.limit(size).toArray();
+      } else {
+        inventories = await cursor.toArray();
+      }
+      res.send(inventories);
+    });
+  } finally {
+  }
+}
+
+run().catch(console.dir);
 
 app.get("/", (req, res) => {
   res.send("Hello from ware-house server!");
