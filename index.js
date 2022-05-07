@@ -62,7 +62,6 @@ async function run() {
 
     app.delete("/inventory/:id", async (req, res) => {
       const id = req.params.id;
-      console.log(id);
       const query = { _id: ObjectId(id) };
       const result = await inventoryCollection.deleteOne(query);
       if (result.deletedCount === 1) {
@@ -70,6 +69,12 @@ async function run() {
       } else {
         res.send({ message: "Delete error!" });
       }
+    });
+
+    app.post("/inventory", async (req, res) => {
+      const doc = req.body;
+      const result = await inventoryCollection.insertOne(doc);
+      res.send(result);
     });
   } finally {
   }
