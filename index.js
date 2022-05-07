@@ -34,6 +34,7 @@ async function run() {
       }
       res.send(inventories);
     });
+
     app.get("/inventory/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
@@ -57,6 +58,18 @@ async function run() {
         options
       );
       res.send(result);
+    });
+
+    app.delete("/inventory/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log(id);
+      const query = { _id: ObjectId(id) };
+      const result = await inventoryCollection.deleteOne(query);
+      if (result.deletedCount === 1) {
+        res.send(result);
+      } else {
+        res.send({ message: "Delete error!" });
+      }
     });
   } finally {
   }
