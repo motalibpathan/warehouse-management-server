@@ -4,7 +4,7 @@
 
 ## Client Live site link [https://warehouse-management-85499.web.app/](https://warehouse-management-85499.web.app/)
 
-## This is server for Car Max website. Here some API's are inventory, inventory by id, filter inventory by email, update inventory quantity, delete inventory and Insert an inventory routes and generate jwt token when login and verify given token from client side.
+### This is server for Car Max website. Here some API's are inventory, inventory by id, filter inventory by email, update inventory quantity, delete inventory and Insert an inventory routes and generate jwt token when login and verify given token from client side.
 
 ## Features and Functionalities
 
