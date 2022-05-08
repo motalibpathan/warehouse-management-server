@@ -39,7 +39,7 @@ async function run() {
     await client.connect();
     const inventoryCollection = client.db("carmax").collection("inventories");
 
-    // auth
+    // auth api
     app.post("/login", async (req, res) => {
       const user = req.body;
       const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
